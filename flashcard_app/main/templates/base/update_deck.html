@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h2 style="padding: 16px;">Update Deck </h2>
+<form action="#"
+      method="post">
+   {% csrf_token %}
+   {{form|crispy}}
+   <button type="submit"
+      class="btn btn-primary"
+      style="margin:16px;"> Update </button>
+</form>
+{% endblock %}

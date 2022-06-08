@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+<head>
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+   </style>
+</head>
+{% block content %}
+   {% if messages %}
+      {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+               <strong>Error!!</strong>{{message}}
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+      {% endfor %}
+   </ul>
+   {% endif %}
+<h1>Cs FlashCards App</h1>
+<a href="{% url 'new_deck' %}" class="btn btn-outline-primary">Add New Deck</a>
+
+{% for deck in decks %}
+{% cycle 'primary' 'warning' 'danger' 'secondary' 'success' 'info' 'dark' as color silent %}
+
+<div class="card text-white bg-{{ color }}" style="width: 28rem; float:right; display: flex; padding: 10px; margin: 10px;">
+   <div class="card-body">
+      <h5 class="card-title">{{deck.topic}} -</h5>
+      <p class="card-text">{{deck.description}}</p>
+      <a href="{% url 'deck_info' deck.id %}" class="btn btn-outline-light">View Deck</a>
+      <a href="{% url 'update_deck' deck.id %}">
+         <svg xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="balck"
+            class="bi bi-pen-fill"
+            viewBox="0 0 16 16">
+            <path
+                  d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
+         </svg>
+      </a>
+      <a href="{% url 'delete_deck' deck.id %}">
+         <svg xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="black"
+            class="bi bi-trash-fill"
+            viewBox="0 0 16 16">
+            <path
+                  d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+         </svg>
+      </a>
+   </div>
+</div>
+
+{% empty%}
+   <h3>No Decks has been Created yet!!</h3>
+{% endfor %}
+{% endblock %}

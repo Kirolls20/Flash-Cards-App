@@ -1,0 +1,15 @@
+{% extends 'base/base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div style="padding:20px; margin:20px;">
+   <h2>Delete Card</h2>
+   <p>
+      <h4>Are You Sure From Deleting This Card ??</h4>
+   </p>
+   <form action="#" method="post">
+      {% csrf_token  %}
+      <button type="submit" class="btn btn-danger" style="margin:15px;">Delete</button>
+   </form>
+</div>
+{% endblock %}

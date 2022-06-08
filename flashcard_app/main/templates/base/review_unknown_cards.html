@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+{% load static %}
+<head>
+   <link rel="stylesheet"
+         href="{% static 'css/style.css' %}">
+</head>
+{% block content %}
+<h3 style="padding:15px; color:rgb(97, 177, 180);"><b>Review Cards You May Need to Remember </b></h3>
+<a href="{% url 'unknown_cards'  %}"class="btn btn-outline-primary" style="float:right;">All The List Cards </a>
+{% for card in cards %}
+
+<div class="flip-card" style="margin:10px; width:500px; height:500px;">
+   <div class="flip-card-inner">
+      <!--Front of Card-->
+      <div class="flip-card-front" style="background-color:rgba(152,58,22,255);">
+         <div class="card-header">{{card.card_type}}
+         </div>
+         <p>
+         <h4 class="card-title" style="font-size: 45px">{{ card.frontcard }}</h4>
+         </p>
+      </div>
+
+      <!--Back of Card-->
+      <div class="flip-card-back" style="background-color:#e6ba79;">
+         <p>
+         <h4 class="card-text">{{ card.backcard|safe }}</h4>
+         <a href="{% url 'delete_unknown_card' card.id %}" class="btn btn-outline-danger">Delete From Review List</a>
+         </p>
+      </div>
+
+   </div>
+   {% empty %}
+   <h3>There's No Cards To Review :( </h3>
+</div>
+{% endfor %}
+
+<div style="padding:20px;">
+   {% if cards.has_previous %}
+   <a href="?page={{cards.previous_page_number}}"class="btn btn-secondary" >Previous Card</a>
+   {% endif %}
+
+   {% if cards.has_next %}
+   <a href="?page={{cards.next_page_number}}"class="btn btn-primary">Next Card</a>
+   {% endif %}
+   Card{{cards.number}} from   Total Cards: {{cards.paginator.num_pages}} 
+</div>
+{% endblock %}

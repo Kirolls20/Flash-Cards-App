@@ -1,0 +1,14 @@
+{%extends 'base/base.html' %}
+
+{% block content %}
+<h1>Card Details </h1>
+<div class="card-body">
+   <div>
+      <h5 class="card-title ">{{card.frontcard}}</h5> <h6 class="text-muted">{{card.card_type}}</h6>
+   </div>
+      <div>
+         <p class="card-text">{{card.backcard | safe}}</p>
+      </div>
+  
+   <a href="{% url 'update_card' card.id  %}" class="btn btn-primary">Update Card</a>
+{% endblock %}

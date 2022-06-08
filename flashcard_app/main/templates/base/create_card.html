@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+<head>
+
+   <link href="ckeditor/plugins/codesnippet/lib/highlight/styles/default.css"
+         rel="stylesheet">
+   <script src="ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+</head>
+{% block content %}
+<h2 style="padding: 16px;">Add New Card </h2>
+<form action="#" method="post">
+   {% csrf_token %}
+   {{form.media}}
+   {{form|crispy}}
+   <button type="submit" class="btn btn-primary" style="margin:16px;">Submit</button>
+</form>
+{% endblock %}
