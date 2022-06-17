@@ -42,7 +42,14 @@ class Card(models.Model):
    def  __str__(self):
       return self.frontcard
 
+class Note(models.Model):  
+   """General Notes Model"""
+   title= models.CharField(max_length=100)
+   content= models.TextField()
+   pub_date=models.DateTimeField(auto_now_add=True)
 
 
+   def __str__(self):
+      return self.title
 
-
+   

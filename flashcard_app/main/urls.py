@@ -17,6 +17,10 @@ urlpatterns = [
    path('save/unknowcard/<int:pk>/',views.SaveToUnknowView.as_view(),name='save_to_unknown'),
    path('need_to_remember/review/cards/',views.ReviewUnknownCards.as_view(),name='review_unknown'),
    path('delete/unknowcard/<int:pk>/',views.DeleteCardFromNeedToRememberLst.as_view(),name='delete_unknown_card'),
+   path('general/notes/',views.GeneralNotesView.as_view(),name='general_notes'),
+   path('update/general/notes/<int:pk>/',views.UpdateNoteView.as_view(),name='update_note'),
+   path('delete/note/<int:pk>/',views.DeleteNoteView.as_view(),name='delete_note'),
+
    # Login And Logout Urls
    path('accounts/login/',LoginView.as_view(template_name='registration/login.html'),name='login'),
    path('accounts/logout/',LogoutView.as_view(),name='logout'),

@@ -206,3 +206,36 @@ class ReviewUnknownCards(LoginRequiredMixin,TemplateView):
       return context
 
 
+class GeneralNotesView(LoginRequiredMixin,TemplateView):
+   """Render A Page Contain  All  Notes."""
+   template_name='base/general_notes.html' 
+   def get_context_data(self,**kwargs):
+      context= super(GeneralNotesView,self).get_context_data(**kwargs)
+      context['note_form'] = CreateNoteForm
+      context['notes'] = Note.objects.all()
+      return context
+   def post(self,request,**kwargs):
+      form = CreateNoteForm(request.POST)
+      if form.is_valid():
+         form.save()
+         return redirect(reverse_lazy('general_notes'))
+
+class UpdateNoteView(LoginRequiredMixin,UpdateView):
+   """Render A Form To Update a Note."""
+
+   template_name='base/update_note.html'
+   model=Note
+   form_class = CreateNoteForm
+   def  get_context_data(self, **kwargs):
+      context = super().get_context_data(**kwargs)
+      context["messages"] = messages.success(self.request,'Note Updated!!!') 
+      return context
+   
+   def get_success_url(self):
+      return reverse_lazy('general_notes')
+class DeleteNoteView(LoginRequiredMixin,DeleteView):
+   template_name='base/general_notes.html'
+   model=Note
+
+   def get_success_url(self):
+      return reverse_lazy('general_notes')

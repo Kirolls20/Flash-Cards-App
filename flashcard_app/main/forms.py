@@ -17,3 +17,8 @@ class AddNewCardForm(ModelForm):
       self.fields['frontcard'].label = 'Question'
       self.fields['backcard'].label= 'Answer'
       
+
+class CreateNoteForm(ModelForm):
+   class Meta:
+      model= Note
+      fields=['title','content']

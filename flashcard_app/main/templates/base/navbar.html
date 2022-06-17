@@ -10,6 +10,9 @@
          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
       </li>
       <li class="nav-item">
+         <a class="nav-link active" aria-current="page" href="{% url 'general_notes' %}">General Notes</a>
+      </li>
+      <li class="nav-item">
          <a class="nav-link" href="{% url 'review_unknown' %}">Need To Remember Cards </a>
    </ul>
    {% if user.is_authenticated %}
@@ -20,7 +23,6 @@
          <li class="nav-item">
             <a class="btn btn-primary" aria-current="page" href="{% url 'logout' %}">Logout</a>
          </li>
-     
    {% else %}
       <li class="nav-item">
          <a class="btn btn-primary" aria-current="page" href="{% url 'login' %}">Login</a>
