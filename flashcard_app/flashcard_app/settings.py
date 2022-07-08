@@ -56,6 +56,7 @@ CKEDITOR_CONFIGS = {
             ['Image', 'Table', 'HorizontalRule', 'SpecialChar','Flash'],
             ['Smiley', 'PageBreak','SpecialChar'],
             ['CodeSnippet', 'Maximize'],
+            
         ],
         'extraPlugins': ','.join(['codesnippet','resize']),
         

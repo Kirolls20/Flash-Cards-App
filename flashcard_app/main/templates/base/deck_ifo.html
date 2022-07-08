@@ -3,6 +3,7 @@
 
 <head>
    <link rel="stylesheet"href="{% static 'css/style.css' %}">
+
 </head>
 
 {% block content %}
@@ -11,11 +12,14 @@
 {% for Deck in Decks %}
 <h2>The {{Deck}} Deck  - {{count}} Cards </h2>
 {% endfor%}
+<div class="btn-wrpper">
+   <a href="{% url 'create_card' deck_id=deck.id %}" class="btn btn-outline-primary" style="float:right; ">New Card</a>
+   <a href="{% url 'get_random' deck_id=deck.id %}" class="btn btn-outline-info" style="float:right; margin-right:10px;">Review</a>
+</div>
 
-<a href="{% url 'create_card' deck_id=deck.id %}"class="btn btn-outline-primary" style="float:right;">New Card</a>
-<a href="{% url 'get_random' deck_id=deck.id %}"class="btn btn-outline-info" style="float:right; margin-right:10px;">Review</a>
+<div class="card-wrapper">
 {% for card in cards %}
-<div class="flip-card" style="margin:10px; width:40%;  float:left;">
+<div class="flip-card" style="margin:10px; float: left;">
    <div class="flip-card-inner">
 
       <!--Front of Card-->
@@ -23,26 +27,36 @@
          <div class="card-header">{{card.card_type}}
          </div>
          <p>
-         <h4 class="card-title"
-            style="font-size: 45px">{{ card.frontcard }}</h4>
+         <h4 class="card-title" style="font-size: 45px">{{ card.frontcard }}</h4>
          </p>
       </div>
 
       <!--Back of Card-->
       <div class="flip-card-back">
          <p>
-         <h4 class="card-text">{{ card.backcard|safe }}</h4>
-         <a href="{% url 'card_detail' card.id %}" class="btn btn-primary">View Card </a>
-         <a href="{% url 'delete_card'  card.id %}"class="btn btn-danger">Delete</a>
+            {% if card.backcard|length > 300%}
+            <h4 class="card-text">{{ card.backcard|safe|slice:":300" }} 
+               <a href="{% url 'card_detail' card.id %}"
+            class="text-muted">ٌ Read more..</a></h4>
+            {% else %}
+            <h4 class="card-text">{{ card.backcard|safe|slice:":300" }}</h4>
+            {% endif %}
+         <a href="{% url 'update_card' card.id %}"
+            class="btn btn-primary">Update Card</a>
+         <a href="{% url 'delete_card'  card.id %}"
+            class="btn btn-danger">Delete</a>
          </p>
-         <form action="{% url 'save_to_unknown' card.id  %}" method="post">
+         <form action="{% url 'save_to_unknown' card.id  %}"
+               method="post">
             {% csrf_token %}
-            <button type="submit"  class='btn btn-outline-primary'>Need To Review</button>
+            <button type="submit" class='btn btn-outline-primary'>Need To Review</button>
 
          </form>
       </div>
    </div>
 </div>
 
-      {% endfor %}
+</div>
+{% endfor %}
+
 {% endblock %}
