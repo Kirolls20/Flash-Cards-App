@@ -56,6 +56,13 @@
 
    }
 } */
+.card-btns-wrraper {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   grid-gap: 10px;
+   justify-content: center;
+   align-self: center;
+}
 
 @media all and (max-width:580px) {
    .btn-wrpper {
@@ -63,5 +70,8 @@
 
 
    }
+
+
+
 
 }
