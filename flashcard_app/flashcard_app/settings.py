@@ -3,9 +3,9 @@ import os
 from pathlib import Path
 from django.urls import reverse_lazy
 
-import django_heroku
-import dj_database_url
-from decouple import config
+# import django_heroku
+# import dj_database_url
+# from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,8 +20,8 @@ SECRET_KEY = 'django-insecure-uh$aw&-x@4txpc3_2137fga13)mc!&k4et(#qg&m9+t^f43@ic
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = []
+ALLOWED_HOSTS = ['*']
+# CSRF_TRUSTED_ORIGINS = ['*']
 
 # Application definition
 
@@ -179,4 +179,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
