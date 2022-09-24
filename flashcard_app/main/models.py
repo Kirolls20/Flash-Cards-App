@@ -30,7 +30,7 @@ class Card(models.Model):
    deck= models.ForeignKey(Deck,on_delete=models.CASCADE)
    frontcard= models.CharField(max_length=250)
    # backcard = RichTextField(blank=True,null=True)
-   backcard= RichTextUploadingField(blank=True,null=True ,extra_plugins=['resize'],external_plugin_resources=[(
+   backcard= RichTextUploadingField(blank=True,null=True ,extra_plugins=['resize','codesnippet'],external_plugin_resources=[(
    'resize',
    '/static/ckeditor_plugins/resize/',
    'plugin.js'

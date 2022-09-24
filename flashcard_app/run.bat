@@ -1,0 +1,1 @@
+start cmd /k  "cd C:\Users\HP\3D Objects\flashcards/env &&  .\Scripts\activate.bat && cd .. && cd flashcard_app/  && python manage.py runserver 127.0.0.1:8000"

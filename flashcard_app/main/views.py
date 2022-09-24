@@ -113,6 +113,9 @@ class CardDetailView(LoginRequiredMixin,DetailView):
    template_name='base/card_detail.html'
    model= Card
    context_object_name= 'card'
+   
+     
+
 
 
 
@@ -139,7 +142,7 @@ class GetRandomCard(LoginRequiredMixin,TemplateView):
       pk = self.kwargs['deck_id']
       deck_id= Deck.objects.get(id=pk)
       context= super(GetRandomCard,self).get_context_data(**kwargs)
-      context['pk'] = deck_id
+      context['deck'] = deck_id
       context['deck_cards'] = Card.objects.filter(deck=pk).all().order_by('?')
       context['cards_number'] = Card.objects.filter(deck=pk).count()
       # random_number= random.randint(0,context['cards_number'] -1) # Get Random Number 

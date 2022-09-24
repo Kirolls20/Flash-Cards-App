@@ -24,7 +24,7 @@
 {% for note in notes %}
 {% cycle 'primary' 'warning' 'danger' 'secondary' 'success' 'info' 'dark' as color silent %}
 <div class="card text-white bg-{{ color }}" id="note-card">
-   <div class="card-body" >
+   <div class="card-body">
       <h5 class="card-title">{{ note.title }}</h5>
       <p class="card-text">{{ note.content }}</p>
       <!-- Edit Note  Button-->

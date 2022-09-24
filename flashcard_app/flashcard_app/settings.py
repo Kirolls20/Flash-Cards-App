@@ -22,14 +22,14 @@ CSRF_TRUSTED_ORIGINS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ckeditor',
+    'ckeditor_uploader',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor',
-    'ckeditor_uploader',
     'crispy_forms',
     'crispy_bootstrap5',
     'main.apps.MainConfig',
@@ -47,17 +47,22 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Custom',
         'height': 500,
         'width': 900,
-        'toolbar_Custom': [
-            ['Styles', 'Format', 'Font', 'FontSize'],
+        'toolbar_Custom':[
             ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['link', 'Unlink'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+            ['Styles', 'Format', 'Font', 'FontSize'],
             ['TextColor', 'BGColor'],
-            ['Image', 'Table', 'HorizontalRule', 'SpecialChar','Flash'],
-            ['Smiley', 'PageBreak','SpecialChar'],
-            ['CodeSnippet', 'Maximize'],
+            ['Maximize', 'ShowBlocks'],
+            ['CodeSnippet','Source'],
+        
         ],
-        'extraPlugins': ','.join(['codesnippet','resize']),
+
+        'extraPlugins': 'codesnippet',
+        'codeSnippet_theme': 'monokai_sublime',
+
         
     },
     
