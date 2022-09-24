@@ -55,9 +55,16 @@ CKEDITOR_CONFIGS = {
             ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
             ['Styles', 'Format', 'Font', 'FontSize'],
             ['TextColor', 'BGColor'],
+<<<<<<< HEAD
             ['Maximize', 'ShowBlocks'],
             ['CodeSnippet','Source'],
         
+=======
+            ['Image', 'Table', 'HorizontalRule', 'SpecialChar','Flash'],
+            ['Smiley', 'PageBreak','SpecialChar'],
+            ['CodeSnippet', 'Maximize'],
+            
+>>>>>>> 541db89241de8da4e9ab85b7a5a42f6d3b7abf70
         ],
 
         'extraPlugins': 'codesnippet',

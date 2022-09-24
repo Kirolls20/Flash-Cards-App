@@ -21,3 +21,12 @@
 <h3>Create Card Deatails With Rich Text editor which enables to add images and resize it ,code snippets,style the content and more other advanced things. </h3>
 
 ![](screenshots/image4.png)
+
+<h3>General Notes With Nice format.</h3>
+
+![](screenshots/image6.png)
+
+<h3>Create New Note with Popup Form in The same Page.</h3>
+
+![](screenshots/image5.png)
+
