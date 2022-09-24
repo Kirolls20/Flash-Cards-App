@@ -3,6 +3,10 @@ import os
 from pathlib import Path
 from django.urls import reverse_lazy
 
+import django_heroku
+import dj_database_url
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -84,7 +88,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 ROOT_URLCONF = 'flashcard_app.urls'
 
 TEMPLATES = [
@@ -164,6 +168,7 @@ STATICFILES_DIRS= [
 STATICFILES_DIRS= (
     os.path.join(BASE_DIR,'static'),
 )
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 # Default primary key field type
@@ -173,3 +178,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Login Logout Redirect Url
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+django_heroku.settings(locals())
