@@ -20,8 +20,8 @@ SECRET_KEY = 'django-insecure-uh$aw&-x@4txpc3_2137fga13)mc!&k4et(#qg&m9+t^f43@ic
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-# CSRF_TRUSTED_ORIGINS = ['*']
+ALLOWED_HOSTS = [' https://cuddly-boxes-drop-156-223-38-216.loca.lt']
+# CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:4040']
 
 # Application definition
 
