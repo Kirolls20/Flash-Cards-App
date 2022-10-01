@@ -19,6 +19,7 @@ class Deck(models.Model):
    user = models.ForeignKey(User,on_delete=models.CASCADE)
    topic = models.CharField(max_length=55,null=False,blank=False)
    description= models.CharField(max_length=300,null=True, blank=True)
+   need_to_remember_cards = models.ManyToManyField('Deck',related_name='need_to_remember',through='NeedToRemember')
    pub_date=models.DateTimeField(auto_now_add=True)
 
    def __str__(self):
@@ -35,7 +36,6 @@ class Card(models.Model):
 )])
    card_type = models.CharField(choices=CARD_TYPE,max_length=100)
    pub_date=models.DateTimeField(auto_now_add=True)
-   need_to_remember_cards = models.ManyToManyField('Card',related_name='need_to_remember',through='NeedToRemember')
 
    def  __str__(self):
       return self.frontcard
