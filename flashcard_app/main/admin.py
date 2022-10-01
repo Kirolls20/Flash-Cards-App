@@ -4,4 +4,4 @@ from . models import *
 admin.site.register(Deck)
 admin.site.register(Card)
 admin.site.register(Note)
-admin.site.register(NeedToReview)
+admin.site.register(NeedToRemember)

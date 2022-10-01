@@ -20,8 +20,8 @@ SECRET_KEY = 'django-insecure-uh$aw&-x@4txpc3_2137fga13)mc!&k4et(#qg&m9+t^f43@ic
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [' https://cuddly-boxes-drop-156-223-38-216.loca.lt']
-# CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:4040']
+ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = []
 
 # Application definition
 
@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
+    # Internal Apps 
     'main.apps.MainConfig',
+    'accounts.apps.AccountsConfig',
 ]
 # Ckeditor Configuration
 
@@ -80,7 +82,7 @@ CKEDITOR_CONFIGS = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -168,7 +170,7 @@ STATICFILES_DIRS= [
 STATICFILES_DIRS= (
     os.path.join(BASE_DIR,'static'),
 )
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 # Default primary key field type

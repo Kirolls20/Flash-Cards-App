@@ -19,11 +19,7 @@
    <a href="{% url 'get_random' deck_id=deck.id %}" class="btn btn-outline-info" style="float:right; margin-right:10px;">Review</a>
 </div>
 
-
 <div class="card-wrapper"style="float:left width:33,33%">
-
-<div class="card-wrapper">
-
 {% for card in cards %}
 <div class="flip-card" style="margin:10px; float: left;">
    <div class="flip-card-inner">
@@ -38,7 +34,6 @@
       </div>
 
       <!--Back of Card-->
-
       <div class="flip-card-back" style="overflow: auto;">
          
             {% comment %} {% if card.backcard|length > 300 %}
@@ -46,26 +41,17 @@
                <a style="text-decoration: none; font-size: 14px;" href="{% url 'card_detail' card.id %}">Read more..</a>
             {% else %} {% endcomment %}
             <h5 class="card-text">{{ card.backcard|safe }}</h5>
-
-      <div class="flip-card-back">
-         <p>
-            {% if card.backcard|length > 300 %}
-            <h5 class="card-text">{{ card.backcard|safe|slice:":300" }} </h5>
-               <a style="text-decoration: none; font-size: 14px;" href="{% url 'card_detail' card.id %}">Read more..</a>
-            {% else %}
-            <h5 class="card-text">{{ card.backcard|safe|slice:":300" }}</h5>
-            {% endif %}
-
+            {% comment %} {% endif %} {% endcomment %}
             <div class="card-btns-wrraper">
                <a href="{% url 'update_card' card.id %}"
-                  class="btn btn-primary">Update Card</a>
+                  class="btn btn-primary"style="width:50%;margin:0 auto;">Update Card</a>
                <a href="{% url 'delete_card'  card.id %}"
-                  class="btn btn-danger">Delete</a>
+                  class="btn btn-danger" style="width:50%;margin:0 auto;">Delete</a>
                </p>
                <form action="{% url 'save_to_unknown' card.id  %}"
                      method="post">
                   {% csrf_token %}
-                  <button type="submit" class='btn btn-outline-primary'>Need To Review</button>
+                  <button type="submit" class='btn btn-outline-primary'>Need To Remeber</button>
             </div>
          
 

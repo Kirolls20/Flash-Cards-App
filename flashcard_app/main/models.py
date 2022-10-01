@@ -1,4 +1,5 @@
 from django.db import models
+
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
@@ -11,9 +12,6 @@ CARD_TYPE=(
 )
 
 
-class NeedToReview(models.Model):
-   user = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
-   cards= models.ManyToManyField("Card",related_name='review_cards')
 
 
 class Deck(models.Model):
@@ -37,13 +35,14 @@ class Card(models.Model):
 )])
    card_type = models.CharField(choices=CARD_TYPE,max_length=100)
    pub_date=models.DateTimeField(auto_now_add=True)
-   # need_to_review=models.ManyToManyField(NeedToReview,related_name='need_to_review')
+   need_to_remember_cards = models.ManyToManyField('Card',related_name='need_to_remember',through='NeedToRemember')
 
    def  __str__(self):
       return self.frontcard
 
 class Note(models.Model):  
    """General Notes Model"""
+   user = models.ForeignKey(User,on_delete=models.CASCADE)
    title= models.CharField(max_length=100)
    content= models.TextField()
    pub_date=models.DateTimeField(auto_now_add=True)
@@ -52,4 +51,11 @@ class Note(models.Model):
    def __str__(self):
       return self.title
 
-   
+# class NeedToRemember(models.Model):
+#    user = models.OneToOneField(User, on_delete=models.CASCADE)
+#    cards= models.ManyToManyField("Card",blank=True, null=True,related_name='review_cards')
+
+class NeedToRemember(models.Model):
+   user = models.ForeignKey(User,on_delete=models.CASCADE)
+   card = models.ForeignKey(Card,on_delete=models.CASCADE)
+   created_at = models.DateField(auto_now_add=True)

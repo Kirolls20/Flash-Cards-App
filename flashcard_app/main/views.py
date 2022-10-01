@@ -11,6 +11,10 @@ from django.contrib import messages
 from .models import *
 from .forms import *
 import random
+from django.db.models import Q
+
+class LandingPageView(TemplateView):
+   template_name= 'base/land_page.html'
 
 class HomeDeckView(LoginRequiredMixin,TemplateView):
    """Render the home page with a list of all decks."""
@@ -88,7 +92,7 @@ class DeckInfoView(LoginRequiredMixin,TemplateView):
       context= super(DeckInfoView,self).get_context_data(**kwargs)
       context['deck']=deck_id
       context['Decks'] = Deck.objects.filter(id=pk)
-      context['cards'] = Card.objects.filter(deck=deck_id)
+      context['cards'] = Card.objects.filter(deck=deck_id).order_by('-pub_date')
       context['count'] = Card.objects.filter(deck=deck_id).count()
       #context['deck_name'] Deck.objects.all
       return context
@@ -160,27 +164,32 @@ class SaveToUnknowView(LoginRequiredMixin,TemplateView):
    """
    template_name='base/deck_ifo.html'
    def post(self,request,pk):
-      card_id= Card.objects.get(id=pk)
-      deck_id= deck_id= Deck.objects.get(id=card_id.deck_id)
+      # card_id= Card.objects.get(id=pk)
+      card_id =get_object_or_404(Card,id=pk)
+      deck_id=  Deck.objects.get(id=card_id.deck_id)
       if request.method == 'POST':
-         saved_card=NeedToReview.objects.get(user=self.request.user).cards.add(card_id)
+         
+         saved_card=NeedToRemember.objects.get(user=self.request.user).cards.add(card_id)
+         
+         return redirect(reverse_lazy('home'))
+         print(saved_card)
          if  saved_card:
-            return redirect(reverse_lazy('home'))
             messages.error(self.request,'Card Already  Saved')
          else:
             return redirect(reverse_lazy('home'))  
       return render(request,self.template_name)
+   
 
 
-class UnknowCardsView(LoginRequiredMixin,TemplateView):
+class NeedToRememberView(LoginRequiredMixin,TemplateView):
    """ Render A Page Contain  All Unknown  Cards That You Need To Review them ."""
    template_name='base/unknowncards.html'
 
    def get_context_data(self,**kwargs):
-      context= super(UnknowCardsView,self).get_context_data(**kwargs)
-      context['cards'] = NeedToReview.objects.get(user=self.request.user).cards.all()
+      context= super().get_context_data(**kwargs)
+      context['cards'] = NeedToRemember.objects.get(user=self.request.user).cards.all()
       return context
-
+      
 class DeleteCardFromNeedToRememberLst(LoginRequiredMixin,TemplateView):
    """Button its function  TO Delete A Card From Need To Review Card List."""
 
@@ -188,7 +197,7 @@ class DeleteCardFromNeedToRememberLst(LoginRequiredMixin,TemplateView):
    def post(self,request,pk):
       card_id= Card.objects.get(id=pk)
       if request.method == 'POST':
-         saved_card=NeedToReview.objects.get(user=self.request.user).cards.remove(card_id)
+         saved_card=NeedToRemember.objects.get(user=self.request.user).cards.remove(card_id)
          messages.success(self.request,'Card Deleted From Need To Review List')
          return redirect(reverse_lazy('unknown_cards'))
       return render(request,self.template_name)
@@ -201,12 +210,14 @@ class ReviewUnknownCards(LoginRequiredMixin,TemplateView):
    
    template_name='base/review_unknown_cards.html'
    def  get_context_data(self, **kwargs):
-      context = super(ReviewUnknownCards,self).get_context_data(**kwargs)
-      context["cards"] = NeedToReview.objects.get(user=self.request.user).cards.all() 
-      p= Paginator(context["cards"],1)
+      context = super().get_context_data(**kwargs)
+      context["cards"] = NeedToRemember.objects.get(user=self.request.user).cards.all()
+      p = Paginator(context['cards'],1)
       page = self.request.GET.get("page")
       context["cards"] = p.get_page(page)
       return context
+
+
 
 
 class GeneralNotesView(LoginRequiredMixin,TemplateView):
@@ -215,12 +226,14 @@ class GeneralNotesView(LoginRequiredMixin,TemplateView):
    def get_context_data(self,**kwargs):
       context= super(GeneralNotesView,self).get_context_data(**kwargs)
       context['note_form'] = CreateNoteForm
-      context['notes'] = Note.objects.all()
+      context['notes'] = Note.objects.filter(user=self.request.user)
       return context
    def post(self,request,**kwargs):
       form = CreateNoteForm(request.POST)
       if form.is_valid():
-         form.save()
+         note= form.save(commit=False)
+         note.user= self.request.user
+         note.save()
          return redirect(reverse_lazy('general_notes'))
 
 class UpdateNoteView(LoginRequiredMixin,UpdateView):

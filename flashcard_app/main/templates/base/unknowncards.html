@@ -16,33 +16,37 @@
 {% endif %}
 <h3 style="padding:15px; color:rgb(97, 177, 180);">
    All The Card List You Need To Review </h3>
-{% for card in cards %}
-   
-<div class="flip-card"
-     style="margin:10px; width:40%;  float:left;">
-   <div class="flip-card-inner">
+{% if cards%}
+   {% for card in cards %}
+      
+   <div class="flip-card"
+      style="margin:10px; width:40%;  float:left;">
+      <div class="flip-card-inner">
 
-      <!--Front of Card-->
-      <div class="flip-card-front" style="background-color:#8f1e05;">
-         <div class="card-header">{{card.card_type}}
+         <!--Front of Card-->
+         <div class="flip-card-front" style="background-color:#8f1e05;">
+            <div class="card-header">{{card.card_type}}
+            </div>
+            <p>
+            <h4 class="card-title" style="font-size: 45px">{{ card.frontcard }}</h4>
+            </p>
          </div>
-         <p>
-         <h4 class="card-title" style="font-size: 45px">{{ card.frontcard }}</h4>
-         </p>
-      </div>
 
-      <!--Back of Card-->
-      <div class="flip-card-back" style="background-color:rgba(69,31,22,255);">
-         <p>
-         <h4 class="card-text">{{ card.backcard|safe }}</h4>
-         <a href="{% url 'card_detail' card.id %}"
-            class="btn btn-primary">View Card </a>
-         <a href="{% url 'delete_card'  card.id %}"
-            class="btn btn-danger">Delete</a>
-         </p>
-      <a href="{% url 'delete_unknown_card' card.id %}" class="btn btn-outline-danger">Delete From Review List</a>
+         <!--Back of Card-->
+         <div class="flip-card-back" style="background-color:rgba(69,31,22,255);">
+            <p>
+            <h4 class="card-text">{{ card.backcard|safe }}</h4>
+            <a href="{% url 'card_detail' card.id %}"
+               class="btn btn-primary">View Card </a>
+            <a href="{% url 'delete_card'  card.id %}"
+               class="btn btn-danger">Delete</a>
+            </p>
+         <a href="{% url 'delete_unknown_card' card.id %}" class="btn btn-outline-danger">Delete From Review List</a>
+         </div>
       </div>
    </div>
-</div>
-{% endfor %}
+   {% endfor %}
+{% else %}
+None
+{% endif%}
 {% endblock %}
