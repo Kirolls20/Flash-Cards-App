@@ -20,7 +20,7 @@ DEBUG = config('DEBUG', default=True,cast=bool)
 
 ALLOWED_HOSTS = ['*']
 # Adding CSRF verification
-
+CSRF_TRUSTED_ORIGINS  = ['https://web-production-f3f6.up.railway.app']
 
 # Application definition
 
@@ -63,11 +63,8 @@ CKEDITOR_CONFIGS = {
             ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
             ['Styles', 'Format', 'Font', 'FontSize'],
             ['TextColor', 'BGColor'],
-
             ['Maximize', 'ShowBlocks'],
             ['CodeSnippet','Source'],
-        
-
             ['Image', 'Table', 'HorizontalRule', 'SpecialChar','Flash'],
             ['Smiley', 'PageBreak','SpecialChar'],
             ['CodeSnippet', 'Maximize'],
