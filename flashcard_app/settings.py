@@ -19,7 +19,9 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=True,cast=bool) 
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-f3f6.up.railway.app/'
+]
 
 # Application definition
 
@@ -119,7 +121,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':'railway',
         'USER': 'postgres',
-        'PASSWORD': config('DB_PASSWORD'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST':'containers-us-west-60.railway.app',
         'PORT':7534,
     }
