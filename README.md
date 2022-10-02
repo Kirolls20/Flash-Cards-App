@@ -1,20 +1,20 @@
-<h2>Flash Card App With Django and some Css</h2>
+<h2>Flash Card App System With Django </h2>
 <h3>Create Deck And Customize it </h3>
 
-![](screenshots/image1.png)
-
+![](static/images/image1.png)
+<h2>ColorFul Cards </h2>
 <h3>Inside The Deck You Can Create Fliping Cards with Front Card (Question) and Back Card (Answer) </h3>
 
 
-![](screenshots/gif1.gif)
+![](static/images/cards.gif)
 
 <p> Inside Each Card you can Update or Delete The Card and also you can view The whole Card Details Page </p>
 
-<h3>Review Cards </h3>
+<h3>Review Cards with Pagination system </h3>
 
-![](screenshots/image2.png)
+![](static/images/review_img.png)
 
-<h3>Add Cards That you might Need to Review Later in Need to Remember Card List </h3>
+<h3>Add Cards That you might Need to Review  Later in Need to Remember Card List </h3>
 
 ![](screenshots/image3.png)
 
@@ -22,11 +22,8 @@
 
 ![](screenshots/image4.png)
 
-<h3>General Notes With Nice format.</h3>
+<h3>General Notes With Nice format and also Colorful...</h3>
 
-![](screenshots/image6.png)
+![](static/images/notes.png)
 
-<h3>Create New Note with Popup Form in The same Page.</h3>
-
-![](screenshots/image5.png)
 
