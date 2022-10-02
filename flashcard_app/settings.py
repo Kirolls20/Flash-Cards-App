@@ -2,7 +2,7 @@
 import os
 from pathlib import Path
 from django.urls import reverse_lazy
-
+from decouple import config
 # import django_heroku
 # import dj_database_url
 # from decouple import config
@@ -15,12 +15,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-uh$aw&-x@4txpc3_2137fga13)mc!&k4et(#qg&m9+t^f43@ic'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True,cast=bool) 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = []
 
 # Application definition
@@ -117,11 +117,15 @@ WSGI_APPLICATION = 'flashcard_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'railway',
+        'USER': 'postgres',
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST':config('DB_HOST'),
+        'PORT':7534
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -160,16 +164,14 @@ CRISPY_TEMPLATE_PACK='bootstrap5'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-STATIC_URL = '/static/'
-MEDIA_URL= '/media/'
-STATICFILES_DIRS= [
+STATIC_URL = 'static/'
+MEDIA_URL='/media/'
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
-STATICFILES_DIRS= (
-    os.path.join(BASE_DIR,'static'),
-)
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
