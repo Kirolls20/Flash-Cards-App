@@ -1,0 +1,58 @@
+{%extends 'base/base.html' %}
+{%load static %}
+{% block title %}
+<title>Landing Page</title>
+{%endblock%}
+{%block content%}
+<head>
+<link rel="stylesheet"
+      href="https://unpkg.com/aos@next/dist/aos.css" />  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<link rel="stylesheet" href="{% static 'css/landing.css'%}">
+
+   <div class="landing"style="padding:10px;">
+         <div class="landing-wrapper">
+            <h2>The best digital flashcards and study tools</h2>
+            <h5>Join over 60 million students using Quizlet’s science-backed flashcards, practice tests and expert solutions to
+               improve
+               their grades and reach their goals.</h5>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="https://github.com/Kirolls20/Flash-Cards-App" target="_blank">Source Code</a>
+         </div> 
+      </div>
+
+</div>
+
+
+<div data-aos="fade-right" class="section2"style="height:500px;">
+   <h1>Customize Your Own Dick</h1>
+   <img src="{% static 'images/image1.png'%}" alt="section2-image">
+</div>
+<div data-aos="fade-left" class="section3"style="height:500px;">
+   <img src="{% static 'images/notes.png'%}" alt="section3-image">
+   <div class="section3-text"> 
+      <h1>Colorful Notes</h1>
+      <h3>So.. Feel Free To Wite Down Notes.</h3>
+   </div>
+   
+</div>
+<div  data-aos="fade-up" class="section4" style="height:500px;">
+   <h1>Study  with  Colorful  Flipping Cards</h1>
+   <img src="{% static 'images/cards.gif'%}"alt="section3-image">
+   
+</div>
+<div  data-aos="fade-up-right" class="section5" style="height:500px;">
+   <h1 style="margin-top:50px;padding:10px;">Review Cards Randomlly With Pagination System</h1>
+   <img src="{% static 'images/review_img.png'%}" alt="section3-image">
+
+</div>
+<div class="btns-wrapper"style="height:200px;">
+   <a href="">Create New Account</a>
+</div>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+   AOS.init();
+</script>
+<div data-aos="fade-in"></div>
+{%endblock%}

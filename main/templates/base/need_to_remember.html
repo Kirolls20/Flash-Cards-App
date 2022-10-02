@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+{% load static %}
+<head>
+   <link rel="stylesheet"
+         href="{% static 'css/style.css' %}">
+</head>
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+   <strong>Success!!</strong>{{message}}
+<button type="button"class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+</ul>
+{% endif %}
+<h3 style="padding:15px; color:rgb(97, 177, 180);">
+   All The Card List You Need To Review </h3>
+{% if cards%}
+   {% for card in cards %}
+      
+   <div class="flip-card"
+      style="margin:10px; width:40%;  float:left;">
+      <div class="flip-card-inner">
+
+         <!--Front of Card-->
+         <div class="flip-card-front" style="background-color:#8f1e05;">
+            <div class="card-header">{{card.card.card_type}}
+            </div>
+            <p>
+            <h4 class="card-title" style="font-size: 45px">{{ card.card.frontcard }}</h4>
+            </p>
+         </div>
+
+         <!--Back of Card-->
+         <div class="flip-card-back" style="background-color:rgba(69,31,22,255);">
+            <p>
+            <h4 class="card-text">{{ card.card.backcard|safe }}</h4>
+            <a  class="btn btn-danger" href="{% url 'delete_need_to_remember_card' card.id%}">Delete Card</a>
+         </div>
+      </div>
+   </div>
+   {% endfor %}
+{% else %}
+<h2 style="font-family:Red Hat Mono", monospace;">Empty!!</h2>
+<img src="{% static 'images/empty_box.png' %}"  alt="empty-box">
+{% endif%}
+{% endblock %}
