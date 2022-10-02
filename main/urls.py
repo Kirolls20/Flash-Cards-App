@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
    path('',views.LandingPageView.as_view(),name='landing'),
-   path('home/',views.HomeDeckView.as_view(),name='home'),
+   path('home',views.HomeDeckView.as_view(),name='home'),
    path('create/new/deck/',views.CreateNewDeckView.as_view(),name='new_deck'),
    path('deck/<int:pk>/',views.DeckInfoView.as_view(),name='deck_info'),
    path('create/card/<int:deck_id>/',views.CreateNewCardView.as_view(),name='create_card'),
