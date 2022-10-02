@@ -36,6 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
+    # White Noise To deal with static files
+    # 'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     # Internal Apps 
     'main.apps.MainConfig',
     'accounts.apps.AccountsConfig',
@@ -82,7 +85,7 @@ CKEDITOR_CONFIGS = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # "whitenoise.middleware.WhiteNoiseMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -167,12 +170,13 @@ CRISPY_TEMPLATE_PACK='bootstrap5'
 STATIC_URL = 'static/'
 MEDIA_URL='/media/'
 STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 # Default primary key field type
