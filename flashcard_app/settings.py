@@ -3,9 +3,7 @@ import os
 from pathlib import Path
 from django.urls import reverse_lazy
 from decouple import config
-# import django_heroku
-# import dj_database_url
-# from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,8 +120,8 @@ DATABASES = {
         'NAME':'railway',
         'USER': 'postgres',
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST':config('DB_HOST'),
-        'PORT':7534
+        'HOST':'containers-us-west-60.railway.app',
+        'PORT':7534,
     }
 }
 
