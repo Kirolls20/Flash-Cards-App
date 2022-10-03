@@ -6,11 +6,6 @@
    width:400px;
    height:450px;
    border-radius:10px;
-
-   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-   background-color: transparent;
-   width: 400px;
-   height: 450px;
    border-radius: 10px;
    border: 1px solid #f1f1f1;
    perspective: 1000px;
@@ -60,12 +55,15 @@
    transform: rotateY(180deg);
 }
 
-/* @media screen and (max-width:800px) {
-   .card-wrapper {
+@media screen and (max-width:450px) {
+   .flip-card {
       grid-template-columns: 1fr;
+      width:350px;
+      display: block;
+      
 
    }
-} */
+}
 
 .card-btns-wrraper{
    display:grid;
@@ -87,11 +85,7 @@
 
 @media all and (max-width:580px) {
    .btn-wrpper {
-
       float: left;
    }
-
    }
-
 }
-

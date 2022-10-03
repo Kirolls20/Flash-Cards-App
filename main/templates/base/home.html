@@ -1,7 +1,11 @@
 {% extends 'base/base.html' %}
+{% load static %}
 <head>
+   <meta name="viewport" content="width=device-width">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <style>
       @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
    </style>
 </head>
 {% block content %}
@@ -28,7 +32,7 @@
 {% for deck in decks %}
 {% cycle 'primary' 'warning' 'danger' 'secondary' 'success' 'info' 'dark' as color silent %}
 
-<div class="card text-white bg-{{ color }}" style="width: 28rem; float:right; display: flex; padding: 10px; margin: 10px;">
+<div id='deck'class="card text-white bg-{{ color }}" style="width:75%; float:right; display: flex; padding: 10px; margin: 5px;">
    <div class="card-body">
       <h5 class="card-title">{{deck.topic}} -</h5>
       <p class="card-text">{{deck.description}}</p>
