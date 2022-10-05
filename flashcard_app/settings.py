@@ -53,7 +53,7 @@ CKEDITOR_JQUERY_URL = '/static/js/jquery-2.1.1.min.js'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
-        'height': 500,
+        'height': 'auto',
         'width': 'auto',
         'toolbar_Custom':[
             ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],
