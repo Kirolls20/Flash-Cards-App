@@ -26,6 +26,7 @@ class Deck(models.Model):
       return self.topic 
 
 class Card(models.Model):
+   user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
    deck= models.ForeignKey(Deck,on_delete=models.CASCADE)
    frontcard= models.CharField(max_length=250)
    # backcard = RichTextField(blank=True,null=True)

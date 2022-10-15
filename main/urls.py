@@ -20,6 +20,6 @@ urlpatterns = [
    path('general/notes/',views.GeneralNotesView.as_view(),name='general_notes'),
    path('update/general/notes/<int:pk>/',views.UpdateNoteView.as_view(),name='update_note'),
    path('delete/note/<int:pk>/',views.DeleteNoteView.as_view(),name='delete_note'),
-
+   path('search_filter/',views.FilterView.as_view(),name='filter'),
 
 ]

@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<h1>Card Filter Results</h1>
+
+{% for card in allcards %}
+<div class="card-wrapper"style="float:left width:25%">
+
+   <div class="flip-card"
+        style="margin:10px; float: left;">
+      <div class="flip-card-inner">
+         {% cycle 'rgb(20, 109, 101)' 'rgb(73, 13, 18)' 'rgb(109, 71, 20)' 'rgb(227, 149, 136)' 'rgb(150, 131, 159)'
+         'rgb(142, 73, 92)' 'rgb(35, 95, 188)' 'rgb(37, 114, 93)' 'rgb(199, 78, 26)' 'rgb(91, 192, 222)' 'rgb(255, 92, 58)'
+         'rgb(169, 183, 144)' 'rgb(53, 55, 73)' as color silent %}
+         <!--Front of Card-->
+         <div class="flip-card-front"style='background-color:{{color}};'>
+            <div class="card-header">{{card.card_type}}
+            </div>
+            <p>
+            <h4 class="card-title"style="font-size: 45px">{{ card.frontcard }}</h4>
+            </p>
+         </div>
+   
+         <!--Back of Card-->
+         {% cycle 'rgb(255, 104, 108)' 'rgb(0, 37, 67)' 'rgb(83, 115, 110)' 'rgb(38, 38, 38)' 'rgb(111, 19, 27)'
+         'rgb(142,73, 92)' 'rgb(35, 95, 188)' 'rgb(202, 129, 4)' 'rgb(74, 59, 60)' as color silent %}
+         <div class="flip-card-back"style="overflow: auto; background-color:{{color}}">
+            <h5 class="card-text">{{ card.backcard|safe }}</h5>
+            {% comment %} {% endif %} {% endcomment %}
+            <div class="card-btns-wrraper">
+               <a href="{% url 'update_card' card.id %}"
+                  class="btn btn-primary"
+                  style="width:50%;margin:0 auto;">Update Card</a>
+               <a href="{% url 'delete_card'  card.id %}"
+                  class="btn btn-danger"
+                  style="width:50%;margin:0 auto;">Delete</a>
+               </p>
+               <form action="{% url 'save_to_unknown' card.id  %}"
+                     method="post">
+                  {% csrf_token %}
+                  <button type="submit"class='btn btn-outline-primary'>Need To Remeber</button>
+            </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   </div>
+
+   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+   <script>hljs.highlightAll();</script>
+
+      
+      {% empty %}
+      <h2>No Matches..</h2>
+{% endfor %}
+
+
+{% endblock %}

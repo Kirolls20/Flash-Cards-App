@@ -4,3 +4,5 @@ document.getElementById('add-btn').addEventListener('click', function() {
 document.getElementById('close-btn').addEventListener('click', function() {
    document.querySelector('.bg-form').style.display = 'none';
 });
+
+

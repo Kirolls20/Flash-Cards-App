@@ -12,6 +12,7 @@ from .models import *
 from .forms import *
 import random
 from django.db.models import Q
+from .filters import CardFilter
 
 class LandingPageView(TemplateView):
    template_name= 'base/land_page.html'
@@ -30,10 +31,25 @@ class HomeDeckView(LoginRequiredMixin,TemplateView):
    template_name='base/home.html'
    def get_context_data(self, **kwargs):
       context= super(HomeDeckView,self).get_context_data(**kwargs)
+      context['card_filter'] = CardFilter()
       context['decks'] = Deck.objects.filter(user=self.request.user)
       context['count']= Card.objects.all()
       return context 
 
+
+class FilterView(LoginRequiredMixin,TemplateView):
+   template_name='base/card_filter.html'
+   
+   def get_context_data(self, **kwargs):
+      context = super().get_context_data(**kwargs)
+      # Render All Existed Jobs 
+      context["allcards"] = Card.objects.filter(user=self.request.user).all()
+      # Render The FIlter Form
+      context['myfilter'] = CardFilter(self.request.GET,queryset= context["allcards"])
+      # render the filter Results
+      context["allcards"] = context['myfilter'].qs
+
+      return context
 
 class  CreateNewDeckView(LoginRequiredMixin,CreateView):
    """
@@ -80,7 +96,9 @@ class CreateNewCardView(LoginRequiredMixin,FormView):
    form_class= AddNewCardForm
    def form_valid(self,form,*args,**kwargs):
       form.instance.deck_id = self.kwargs['deck_id']
+      form.instance.user = self.request.user
       form.save()
+      
       return super(CreateNewCardView,self).form_valid(form)
 
    def get_success_url(self):

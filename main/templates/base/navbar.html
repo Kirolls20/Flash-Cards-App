@@ -1,4 +1,7 @@
+{% load static %}
+{% load crispy_forms_tags%}
 <nav class="navbar navbar-expand-lg bg-light">
+      <link rel="stylesheet" href="{% static 'css/filter.css'%}">
 <div class="container-fluid">
    
    <a class="navbar-brand" href="{% url 'landing'%}"style="margin-left:30px;">CS FlashCard</a>
@@ -17,10 +20,8 @@
          <a class="nav-link" href="{% url 'need_to_remember' %}">Need To Remember Cards </a>
    </ul>
    {% if user.is_authenticated %}
-      <form class="d-flex" role="search" >
-         <input class="form-control me-2" type="search" placeholder="Search for cards.." aria-label="Search">
-         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
+      <a href="#" id="add-filter" class="btn btn-outline-success">Search</a>
       
          <li class="nav-item" style="list-style-type: none; margin:8px;">
             <a class="btn btn-primary" aria-current="page" href="{% url 'logout' %}">Logout</a>
@@ -35,8 +36,31 @@
       </li>
    </div>
    {% endif %} 
-  
+
    </div>
-   
+
 </div>
 </nav>
+
+<!-- create Filter Popup Form -->
+<div class="filter-form">
+   <div class="form-content">
+   <button type="button"
+            id="close-btn"
+            class="btn-close"
+            aria-label="Close"
+            style="float:right; padding:10px;">
+      </button>
+      <h4 style="padding:10px;">Cards Filter By..</h4>
+      <form action="{% url 'filter' %}"
+            method="GET">
+         {% csrf_token %}
+         {{card_filter.form|crispy}}
+      <button type="submit"
+               class="btn btn-primary"
+               style="display:block">Search</button>
+      </form>
+   </div>
+   <script src="{% static 'js/scripts2.js' %}"></script>
+</div>
+
