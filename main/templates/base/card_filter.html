@@ -3,9 +3,9 @@
 {% block content %}
 <h1>Card Filter Results</h1>
 
+<h3>{{allcards|length}} Matches</h3>
 {% for card in allcards %}
 <div class="card-wrapper"style="float:left width:25%">
-
    <div class="flip-card"
         style="margin:10px; float: left;">
       <div class="flip-card-inner">
@@ -46,9 +46,7 @@
    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
    <script>hljs.highlightAll();</script>
 
-      
-      {% empty %}
-      <h2>No Matches..</h2>
+    
 {% endfor %}
 
 
