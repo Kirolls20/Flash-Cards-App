@@ -116,6 +116,7 @@ class DeckInfoView(LoginRequiredMixin,TemplateView):
    def get_context_data(self,pk, **kwargs):
       deck_id= Deck.objects.get(id=pk)
       context= super(DeckInfoView,self).get_context_data(**kwargs)
+      context['card_filter'] = CardFilter()
       context['deck']=deck_id
       context['Decks'] = Deck.objects.filter(id=pk)
       context['cards'] = Card.objects.filter(deck=deck_id).order_by('-pub_date')
@@ -144,8 +145,6 @@ class CardDetailView(LoginRequiredMixin,DetailView):
    model= Card
    context_object_name= 'card'
    
-     
-
 
 
 
@@ -173,6 +172,7 @@ class GetRandomCard(LoginRequiredMixin,TemplateView):
       deck_id= Deck.objects.get(id=pk)
       context= super(GetRandomCard,self).get_context_data(**kwargs)
       context['deck'] = deck_id
+      context['card_filter'] = CardFilter()
       context['deck_cards'] = Card.objects.filter(deck=pk).all().order_by('?')
       context['cards_number'] = Card.objects.filter(deck=pk).count()
       # random_number= random.randint(0,context['cards_number'] -1) # Get Random Number 
@@ -215,6 +215,12 @@ class NeedToRememberListView(LoginRequiredMixin,ListView):
    model= NeedToRemember
    context_object_name = 'cards'
 
+   def get_context_data(self,**kwargs):
+      context= super().get_context_data(**kwargs)
+      context['card_filter'] = CardFilter()
+      return context
+      
+
 
 class DeleteCardFromNeedToRememberLst(LoginRequiredMixin,DeleteView):
 
@@ -234,6 +240,7 @@ class GeneralNotesView(LoginRequiredMixin,TemplateView):
    def get_context_data(self,**kwargs):
       context= super(GeneralNotesView,self).get_context_data(**kwargs)
       context['note_form'] = CreateNoteForm
+      context['card_filter'] = CardFilter()
       context['notes'] = Note.objects.filter(user=self.request.user)
       return context
    def post(self,request,**kwargs):
