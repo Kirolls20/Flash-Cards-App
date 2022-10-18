@@ -1,3 +1,4 @@
+
 body,
 html {
    height: 100%;
@@ -70,7 +71,7 @@ html {
    float:right;
    width: 50%;
    height: auto;
-   padding: 20px;
+  
    border-radius: 50px;
 }
 
@@ -152,6 +153,65 @@ html {
    color:white;
 }
 
+footer{
+   
+   background-color:#111;
+   height: auto;
+   width:100vw;
+   color:aliceblue;
+   font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+.footer-content{
+   display: flex;
+   align-items: center;
+   justify-content:center;
+   flex-direction: column;
+   text-align: center;
+}
+.footer-content h3{
+   font-size:1.8em;
+   line-height: 3em;
+   font-weight:400;
+}
+.footer-content p{
+   max-width: 500px;
+   margin:10px auto;
+   line-height: 28px;
+   font-size:16px;   
+}
+.social{
+   list-style: none;
+   display:flex;
+   justify-content:center;
+   margin:1em 0 3em 0;
+}
+.social li{
+   margin:0 12px;
+
+}
+.social a i {
+   font: size 2rem;
+}
+.footer-bottom{
+   background-color: #000;
+   width:100vw;
+   padding:0 10px;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+}
+.footer-bottom p{
+   font-size: 18px;
+   word-spacing: 3px;
+   text-transform: capitalize;
+
+}
+span{
+   text-transform:uppercase;
+   opacity:0.4;
+   font-weight:300
+}
 @media screen and (max-width:700px){
    .landing-wrapper h5{
       width: 50%;
