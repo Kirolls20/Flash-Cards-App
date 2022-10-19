@@ -1,6 +1,6 @@
 <h2>Flash Card App System With Django </h2>
 <h2> Feel Free to try the Website and give me your opinion</h2>
-<a href="https://web-production-f3f6.up.railway.app/home">Flash Cards app</a>
+<a href="https://web-production-f3f6.up.railway.app/" target="_blank">Flash Cards app</a>
 <h3>Create Deck And Customize it </h3>
 
 ![](static/images/image1.png)
